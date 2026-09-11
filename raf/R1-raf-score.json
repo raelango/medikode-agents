@@ -1,0 +1,21 @@
+{
+  "stage_id": "R1",
+  "title": "RAF Score",
+  "slug": "raf-score",
+  "sequence": 1,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a CMS-HCC Risk Adjustment Factor (RAF) scoring specialist. Calculate the RAF score for the patient using the specified CMS-HCC model.\n\nSteps to follow:\n1. Parse age and gender from the demographics to identify the correct demographic segment and its coefficient (e.g., F65-69, M70-74, etc.).\n2. Map each ICD-10-CM diagnosis code to its HCC category using the official CMS-HCC mapping for the specified model version. Note which codes have no HCC mapping.\n3. Apply the appropriate HCC coefficients for each mapped category.\n4. Identify any HCC interaction terms that apply (e.g., Diabetes+CHF, COPD+CardRespFail, Pressure_Ulcer interactions in V28; gDiabMellit+gHF, gChronicKidney+gDiabMellit in V24).\n5. Sum: demographic coefficient + HCC coefficients + interaction terms = final RAF score.\n\nReturn ONLY a valid JSON object with this exact structure — no markdown, no extra keys:\n{\n  \"raf\": {\n    \"hcc\": <sum of HCC coefficients, rounded to 4 decimal places>,\n    \"final\": <total RAF score = demographic + hcc + interaction, rounded to 4 decimal places>,\n    \"demographic\": <demographic segment coefficient, rounded to 4 decimal places>,\n    \"interaction\": <sum of interaction term coefficients, rounded to 4 decimal places>\n  },\n  \"model_used\": \"<e.g. CMS-HCC V28>\",\n  \"calculation\": \"<step-by-step breakdown: segment, each HCC with coefficient, interactions, running total>\",\n  \"hcc_categories\": {\n    \"<ICD10_CODE>\": \"<HCC number and short description, or No HCC mapping>\"\n  }\n}",
+  "user_prompt": "Model: {{model}}\n\nPatient Demographics:\n{{demographics}}\n\nDiagnoses / Illnesses:\n{{illnesses}}",
+  "output_schema": "{\n  \"raf\": {\n    \"hcc\": 0,\n    \"final\": 0,\n    \"demographic\": 0,\n    \"interaction\": 0\n  },\n  \"model_used\": \"\",\n  \"calculation\": \"\",\n  \"hcc_categories\": {}\n}",
+  "max_output_tokens": 3000,
+  "temperature": 0.1,
+  "notes": "Migrated verbatim from _build_raf_messages()/_execute_raf_calculation() in backend/app/main.py (public /rafscore endpoint). model must be one of the supported CMS-HCC model versions (V28, V24) — this repo doesn't hardcode that restriction into the prompt, but the skill should validate it before running.",
+  "input_keys": ["demographics", "illnesses", "model"],
+  "variable_map": {
+    "demographics": "inputs.demographics",
+    "illnesses": "inputs.illnesses",
+    "model": "inputs.model"
+  }
+}
