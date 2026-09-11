@@ -1,0 +1,31 @@
+{
+  "stage_id": "S9",
+  "title": "Notes Queries",
+  "slug": "notes-queries",
+  "sequence": 9,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic case disposition packager. Output only JSON. Return a single JSON object with top-level key case_disposition_package and nothing else.",
+  "user_prompt": "Create notes, queries, and risk scores for final disposition. Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"case_disposition_package\": {\n    \"case_confidence_score_pct\": 0,\n    \"denial_risk_score_pct\": 0,\n    \"coder_notes_packet\": {},\n    \"provider_query_packet\": [],\n    \"routing_recommendation\": \"finalize|review\"\n  }\n}\n\ncoding_readiness_report:\n{{coding_readiness_report}}\n\npayer_adjusted_codes:\n{{payer_adjusted_codes}}\n\nverification_outcome:\n{{verification_outcome}}\n\ncoder_facts_package:\n{{coder_facts_package}}\n\nchart_canonical_package:\n{{chart_canonical_package}}\n\nscoring_policy_version: {{scoring_policy_version}}",
+  "output_schema": "{\n  \"case_disposition_package\": {\n    \"case_confidence_score_pct\": 0,\n    \"denial_risk_score_pct\": 0,\n    \"coder_notes_packet\": {},\n    \"provider_query_packet\": [],\n    \"routing_recommendation\": \"finalize|review\"\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "coding_readiness_report",
+    "payer_adjusted_codes",
+    "verification_outcome",
+    "coder_facts_package",
+    "chart_canonical_package",
+    "scoring_policy_version"
+  ],
+  "variable_map": {
+    "coding_readiness_report": "inputs.coding_readiness_report",
+    "payer_adjusted_codes": "inputs.payer_adjusted_codes",
+    "verification_outcome": "inputs.verification_outcome",
+    "coder_facts_package": "inputs.coder_facts_package",
+    "chart_canonical_package": "inputs.chart_canonical_package",
+    "scoring_policy_version": "inputs.scoring_policy_version"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "stage_id": "S8",
+  "title": "Verify Codes",
+  "slug": "verify-codes",
+  "sequence": 8,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic coding verifier. Output only JSON. Return a single JSON object with top-level key verification_outcome and nothing else.",
+  "user_prompt": "Verify codes against the chart. Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"verification_outcome\": {\n    \"status\": \"pass|review|fail\",\n    \"hard_failures\": [],\n    \"warnings\": [],\n    \"contra_evidence_findings\": [],\n    \"validator_summary\": {}\n  }\n}\n\npayer_adjusted_codes:\n{{payer_adjusted_codes}}\n\nchart_canonical_package:\n{{chart_canonical_package}}\n\ncoder_facts_package:\n{{coder_facts_package}}\n\nverification_ruleset_version: {{verification_ruleset_version}}",
+  "output_schema": "{\n  \"verification_outcome\": {\n    \"status\": \"pass|review|fail\",\n    \"hard_failures\": [],\n    \"warnings\": [],\n    \"contra_evidence_findings\": [],\n    \"validator_summary\": {}\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "payer_adjusted_codes",
+    "chart_canonical_package",
+    "coder_facts_package",
+    "verification_ruleset_version"
+  ],
+  "variable_map": {
+    "payer_adjusted_codes": "inputs.payer_adjusted_codes",
+    "chart_canonical_package": "inputs.chart_canonical_package",
+    "coder_facts_package": "inputs.coder_facts_package",
+    "verification_ruleset_version": "inputs.verification_ruleset_version"
+  }
+}

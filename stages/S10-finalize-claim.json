@@ -1,0 +1,27 @@
+{
+  "stage_id": "S10",
+  "title": "Finalize Claim",
+  "slug": "finalize-claim",
+  "sequence": 10,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic claim finalizer. Output only JSON. Return a single JSON object with top-level key final_claim_package and nothing else.",
+  "user_prompt": "Finalize claim output. Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"final_claim_package\": {\n    \"finalized\": false,\n    \"final_claim_lines\": [],\n    \"final_quality_lines\": [],\n    \"human_review_packet\": null\n  }\n}\n\npayer_adjusted_codes:\n{{payer_adjusted_codes}}\n\nverification_outcome:\n{{verification_outcome}}\n\ncase_disposition_package:\n{{case_disposition_package}}\n\ncoding_readiness_report:\n{{coding_readiness_report}}",
+  "output_schema": "{\n  \"final_claim_package\": {\n    \"finalized\": false,\n    \"final_claim_lines\": [],\n    \"final_quality_lines\": [],\n    \"human_review_packet\": null\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "payer_adjusted_codes",
+    "verification_outcome",
+    "case_disposition_package",
+    "coding_readiness_report"
+  ],
+  "variable_map": {
+    "payer_adjusted_codes": "inputs.payer_adjusted_codes",
+    "verification_outcome": "inputs.verification_outcome",
+    "case_disposition_package": "inputs.case_disposition_package",
+    "coding_readiness_report": "inputs.coding_readiness_report"
+  }
+}

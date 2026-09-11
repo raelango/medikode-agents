@@ -1,0 +1,23 @@
+{
+  "stage_id": "S2",
+  "title": "Billing Context",
+  "slug": "billing-context",
+  "sequence": 2,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic claim context builder. Output only JSON. Return a single JSON object with top-level key claim_context_package and nothing else.",
+  "user_prompt": "Build claim context from the provided chart canonical package and source metadata. Populate providers from chart text when present (e.g., \"given by <name>\"). Use source_metadata when present; otherwise infer as unknown. When source_metadata.facility is an object, map its name/type/teaching status into claim_context (e.g., facility name into encounter_setting or facility fields in providers/teaching as appropriate). Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"claim_context_package\": {\n    \"claim_context\": {\n      \"claim_type\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n      \"place_of_service_code\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n      \"encounter_setting\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n      \"providers\": [],\n      \"telehealth\": {\n        \"is_telehealth\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n        \"modality\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []}\n      },\n      \"teaching\": {\n        \"is_teaching_encounter\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n        \"attestation_present\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n        \"attestation_text\": \"\"\n      }\n    }\n  }\n}\n\nsource_metadata:\n{{source_metadata}}\n\nchart_canonical_package:\n{{chart_canonical_package}}",
+  "output_schema": "{\n  \"claim_context_package\": {\n    \"claim_context\": {\n      \"claim_type\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n      \"place_of_service_code\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n      \"encounter_setting\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n      \"providers\": [],\n      \"telehealth\": {\n        \"is_telehealth\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n        \"modality\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []}\n      },\n      \"teaching\": {\n        \"is_teaching_encounter\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n        \"attestation_present\": {\"value\": \"...\", \"source\": \"metadata|unknown\", \"evidence_refs\": []},\n        \"attestation_text\": \"\"\n      }\n    }\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "chart_canonical_package",
+    "source_metadata"
+  ],
+  "variable_map": {
+    "chart_canonical_package": "inputs.chart_canonical_package",
+    "source_metadata": "inputs.source_metadata"
+  }
+}

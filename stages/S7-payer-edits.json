@@ -1,0 +1,31 @@
+{
+  "stage_id": "S7",
+  "title": "Payer Edits",
+  "slug": "payer-edits",
+  "sequence": 7,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic payer edits applier. Output only JSON. Return a single JSON object with top-level key payer_adjusted_codes and nothing else.",
+  "user_prompt": "Apply payer rules and edits. Preserve all incoming billable_lines with source not equal to \"ai\" unless a rule explicitly removes or edits them. If you remove or modify any billable_lines, add a justification entry in payer_edits_log describing the change and why. Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"payer_adjusted_codes\": {\n    \"payer_profile\": {\"id\": \"\", \"version\": \"\", \"effective_date\": \"\"},\n    \"billable_lines\": [],\n    \"quality_lines\": [],\n    \"payer_edits_log\": [],\n    \"payer_missing_inputs\": []\n  }\n}\n\nspecialty_adjusted_codes:\n{{specialty_adjusted_codes}}\n\npayer_name: {{payer_name}}\nguidelines:\n{{guidelines}}\n\npayer_profile_version: {{payer_profile_version}}\npayer_profile_effective_date: {{payer_profile_effective_date}}\nedits_engine_version: {{edits_engine_version}}",
+  "output_schema": "{\n  \"payer_adjusted_codes\": {\n    \"payer_profile\": {\"id\": \"\", \"version\": \"\", \"effective_date\": \"\"},\n    \"billable_lines\": [],\n    \"quality_lines\": [],\n    \"payer_edits_log\": [],\n    \"payer_missing_inputs\": []\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "specialty_adjusted_codes",
+    "payer_name",
+    "guidelines",
+    "payer_profile_version",
+    "payer_profile_effective_date",
+    "edits_engine_version"
+  ],
+  "variable_map": {
+    "specialty_adjusted_codes": "inputs.specialty_adjusted_codes",
+    "payer_name": "inputs.payer_name",
+    "guidelines": "inputs.guidelines",
+    "payer_profile_version": "inputs.payer_profile_version",
+    "payer_profile_effective_date": "inputs.payer_profile_effective_date",
+    "edits_engine_version": "inputs.edits_engine_version"
+  }
+}

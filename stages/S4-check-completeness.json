@@ -1,0 +1,23 @@
+{
+  "stage_id": "S4",
+  "title": "Check Completeness",
+  "slug": "check-completeness",
+  "sequence": 4,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic coding readiness evaluator. Output only JSON. Return a single JSON object with top-level key coding_readiness_report and nothing else.",
+  "user_prompt": "Evaluate completeness and readiness based on coder facts and claim context. Add to missing_inputs only when the absence of those inputs blocks from generating medical codes by the medical coder and the data cannot be inferred based on other data. Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"coding_readiness_report\": {\n    \"status\": \"pass|review|fail\",\n    \"category_checks\": [],\n    \"hard_failures\": [],\n    \"review_triggers\": [],\n    \"missing_inputs\": []\n  }\n}\n\ncoder_facts_package:\n{{coder_facts_package}}\n\nclaim_context_package:\n{{claim_context_package}}",
+  "output_schema": "{\n  \"coding_readiness_report\": {\n    \"status\": \"pass|review|fail\",\n    \"category_checks\": [],\n    \"hard_failures\": [],\n    \"review_triggers\": [],\n    \"missing_inputs\": []\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "coder_facts_package",
+    "claim_context_package"
+  ],
+  "variable_map": {
+    "coder_facts_package": "inputs.coder_facts_package",
+    "claim_context_package": "inputs.claim_context_package"
+  }
+}

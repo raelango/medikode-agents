@@ -1,0 +1,27 @@
+{
+  "stage_id": "S6",
+  "title": "Specialty Rules",
+  "slug": "specialty-rules",
+  "sequence": 6,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic specialty rules applier. Output only JSON. Return a single JSON object with top-level key specialty_adjusted_codes and nothing else.",
+  "user_prompt": "Apply specialty rules to baseline codes. Preserve all incoming billable_lines with source not equal to \"ai\" unless a rule explicitly removes or edits them. If you remove or modify any billable_lines, add a justification entry in adjustment_log describing the change and why. Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"specialty_adjusted_codes\": {\n    \"specialty_profile\": {\"id\": \"\", \"version\": \"\"},\n    \"billable_lines\": [],\n    \"quality_lines\": [],\n    \"adjustment_log\": []\n  }\n}\n\nbaseline_code_candidates:\n{{baseline_code_candidates}}\n\nspecialty_name: {{specialty_name}}\nguidelines:\n{{guidelines}}\n\nspecialty_profile_version: {{specialty_profile_version}}",
+  "output_schema": "{\n  \"specialty_adjusted_codes\": {\n    \"specialty_profile\": {\"id\": \"\", \"version\": \"\"},\n    \"billable_lines\": [],\n    \"quality_lines\": [],\n    \"adjustment_log\": []\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "baseline_code_candidates",
+    "specialty_name",
+    "guidelines",
+    "specialty_profile_version"
+  ],
+  "variable_map": {
+    "baseline_code_candidates": "inputs.baseline_code_candidates",
+    "specialty_name": "inputs.specialty_name",
+    "guidelines": "inputs.guidelines",
+    "specialty_profile_version": "inputs.specialty_profile_version"
+  }
+}

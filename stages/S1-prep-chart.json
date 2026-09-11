@@ -1,0 +1,21 @@
+{
+  "stage_id": "S1",
+  "title": "Prep Chart",
+  "slug": "prep-chart",
+  "sequence": 1,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic chart canonicalizer. Output only JSON. Do not paraphrase or rewrite text. Preserve verbatim content; only normalize whitespace. Return a single JSON object with top-level key chart_canonical_package and nothing else.",
+  "user_prompt": "Canonicalize the following medical chart text. Requirements:\n- Preserve verbatim content; do not add or remove facts.\n- Detect section headers (case-insensitive) with optional trailing colon.\n- Recognize headers: Reason for Appointment, Assessments, Treatment, Notes, Clinical Notes, Immunization/Immunizations, Follow Up, History of Present Illness (HPI), History, Review of Systems, Vital Signs/Vitals, Examination, Current Medications, Past Medical History, Family History, Labs.\n- If no header for a block, set section_name to \"Uncategorized\".\n- For Immunizations section: split each line containing \"given by\" into its own excerpt.\n- For lines starting with \"LAB:\", group contiguous lab lines into one excerpt per lab block.\n- Excerpts should be 1-10 lines and maintain original order.\nReturn ONLY this JSON object (no markdown, no extra text):\n{\n  \"chart_canonical_package\": {\n    \"excerpts\": [{\"excerpt_id\":\"ex_0001\",\"section_name\":\"...\",\"text_verbatim\":\"...\"}],\n    \"section_index\": {\"Section\": [\"ex_0001\"]},\n    \"canonicalization\": {\"schema_version\":\"1.0.0\",\"source_format\":\"plain_text\",\"normalization_notes\": []}\n  }\n}\n\nCHART TEXT:\n{{raw_chart_text}}",
+  "output_schema": "{\n  \"chart_canonical_package\": {\n    \"excerpts\": [{\"excerpt_id\":\"ex_0001\",\"section_name\":\"...\",\"text_verbatim\":\"...\"}],\n    \"section_index\": {\"Section\": [\"ex_0001\"]},\n    \"canonicalization\": {\"schema_version\":\"1.0.0\",\"source_format\":\"plain_text\",\"normalization_notes\": []}\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "raw_chart_text"
+  ],
+  "variable_map": {
+    "raw_chart_text": "inputs.raw_chart_text"
+  }
+}

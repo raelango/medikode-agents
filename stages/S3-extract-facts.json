@@ -1,0 +1,23 @@
+{
+  "stage_id": "S3",
+  "title": "Extract Facts",
+  "slug": "extract-facts",
+  "sequence": 3,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic coder facts extractor. Output only strict JSON. Return a single JSON object with top-level key coder_facts_package and nothing else.",
+  "user_prompt": "Extract coder facts from the chart canonical package and claim context. Every fact you return must include evidence_refs referencing excerpt_id values from chart_canonical_package. If a fact has no direct excerpt evidence, set evidence_refs to an empty array. Do not return any fact without evidence_refs. When capturing patient age, include months whenever available (e.g., 1 year 3 months). Return ONLY this JSON object (no markdown, no extra text):\n{\n  \"coder_facts_package\": {\n    \"patient_context\": {},\n    \"encounter_facts\": {},\n    \"services\": {},\n    \"quality_measure_facts\": {},\n    \"coding_readiness\": {\"missing_inputs\": [], \"conflicts\": []}\n  }\n}\n\nchart_canonical_package:\n{{chart_canonical_package}}\n\nclaim_context_package:\n{{claim_context_package}}",
+  "output_schema": "{\n  \"coder_facts_package\": {\n    \"patient_context\": {},\n    \"encounter_facts\": {},\n    \"services\": {},\n    \"quality_measure_facts\": {},\n    \"coding_readiness\": {\"missing_inputs\": [], \"conflicts\": []}\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "chart_canonical_package",
+    "claim_context_package"
+  ],
+  "variable_map": {
+    "chart_canonical_package": "inputs.chart_canonical_package",
+    "claim_context_package": "inputs.claim_context_package"
+  }
+}

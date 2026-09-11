@@ -1,0 +1,31 @@
+{
+  "stage_id": "S5",
+  "title": "Initial Codes",
+  "slug": "initial-codes",
+  "sequence": 5,
+  "enabled": true,
+  "schema_version": "1.0.0",
+  "prompt_format": "json",
+  "system_prompt": "You are a deterministic baseline code generator. Output only JSON. Return a single JSON object with top-level key baseline_code_candidates and nothing else.",
+  "user_prompt": "Generate baseline code candidates. For each entry in candidate_billable_lines, use this exact structure:\n{\n  \"cpt\": \"\",\n  \"units\": 1,\n  \"modifier\": \"\",\n  \"description\": \"\",\n  \"icd10\": [],\n  \"place_of_service\": \"Office\",\n  \"provider\": \"\",\n  \"evidence_refs\": [],\n  \"source\": \"ai\"\n}\nReturn ONLY this JSON object (no markdown, no extra text):\n{\n  \"baseline_code_candidates\": {\n    \"candidate_billable_lines\": [],\n    \"candidate_quality_lines\": [],\n    \"candidate_missing_inputs\": []\n  }\n}\n\ncoder_facts_package:\n{{coder_facts_package}}\n\nclaim_context_package:\n{{claim_context_package}}\n\nguidelines:\n{{guidelines}}\n\ncode_crosswalk_bundle_id: {{code_crosswalk_bundle_id}}\ncode_crosswalk_bundle_version: {{code_crosswalk_bundle_version}}\nbaseline_ruleset_version: {{baseline_ruleset_version}}",
+  "output_schema": "{\n  \"baseline_code_candidates\": {\n    \"candidate_billable_lines\": [],\n    \"candidate_quality_lines\": [],\n    \"candidate_missing_inputs\": []\n  }\n}",
+  "max_output_tokens": 32768,
+  "temperature": 0,
+  "notes": "",
+  "input_keys": [
+    "coder_facts_package",
+    "claim_context_package",
+    "guidelines",
+    "code_crosswalk_bundle_id",
+    "code_crosswalk_bundle_version",
+    "baseline_ruleset_version"
+  ],
+  "variable_map": {
+    "coder_facts_package": "inputs.coder_facts_package",
+    "claim_context_package": "inputs.claim_context_package",
+    "guidelines": "inputs.guidelines",
+    "code_crosswalk_bundle_id": "inputs.code_crosswalk_bundle_id",
+    "code_crosswalk_bundle_version": "inputs.code_crosswalk_bundle_version",
+    "baseline_ruleset_version": "inputs.baseline_ruleset_version"
+  }
+}
