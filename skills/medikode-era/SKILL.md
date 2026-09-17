@@ -1,6 +1,6 @@
 ---
 name: medikode-era
-description: Run the Medikode remittance/EOB pipeline (E1 Text Ingestor through E7 Lossless 835 Packager) to turn free-text EOB or remittance content into a structured, evidence-traced package and a real ANSI X12 835 file. Takes the same input as the demo app's "Generate ERA" form. Stage prompts and schemas are read live from the raelango/medikode-agents GitHub repo, and the run is recorded to that same repo instead of SharePoint. Use when the user invokes /medikode-era, asks to "generate an ERA", parse an EOB/remittance, or turn remittance text into an 835.
+description: Run the Medikode remittance/EOB pipeline (E1 Text Ingestor through E7 Lossless 835 Packager) to turn free-text EOB or remittance content into a structured, evidence-traced package and a real ANSI X12 835 file. Takes the same input as the demo app's "Generate ERA" form. Stage prompts and schemas are read live from the raelango/medikode-agents GitHub repo. This skill only reads from that repo — it never writes or pushes anything to it. Use when the user invokes /medikode-era, asks to "generate an ERA", parse an EOB/remittance, or turn remittance text into an 835.
 ---
 
 # medikode-era
@@ -29,7 +29,7 @@ docs) that was never actually wired into the live app. This skill runs
 that more rigorous pipeline and produces genuinely correct X12 835 output
 from it — it does not attempt to reproduce the legacy function's bug.
 If exact byte-parity with today's live (flawed) output is specifically
-wanted, see the note at the end of Step 5 instead.
+wanted, see the note at the end of Step 4 instead.
 
 ## Step 1 — Load stage definitions
 
@@ -53,20 +53,8 @@ These mirror the demo app's "Generate ERA" form:
   read it if the user gave a file path). This is the app's `content`.
 - `facility` — a small object, same shape as in `medikode-code`:
   `{name, facility_type, facility_teaching_status, locations: [], providers: [], guidelines}`
-- `use_cache` — boolean, default `true`
 
-## Step 3 — Check the cache
-
-Build `variables = {client: facility.name, facility: facility.name,
-facility_type: facility.facility_type, facility_teaching_status:
-facility.facility_teaching_status, facility_locations: facility.locations,
-facility_providers: facility.providers, guidelines: facility.guidelines}`
-(matches the real app's field names exactly) and compute
-`cache_key = sha256(json.dumps({mode:"era", variables, content: remit_text}, sort_keys=true))`.
-Per `DATASTORE.md` in the repo: if `use_cache` is true and
-`cache/<cache_key>.json` exists, use its `response` and skip to Step 6.
-
-## Step 4 — Run each stage in sequence
+## Step 3 — Run each stage in sequence
 
 Same mechanics as `medikode-code`. `metadata` for E1 = `{source_channel:
 "ui", facility: facility.name}` (matches real wiring per E1's `notes`); a
@@ -84,7 +72,7 @@ few things specific to this pipeline, called out in individual stages'
   each stage's stated rules exactly and literally rather than treating
   them as creative/open-ended. E5 in particular builds a complete,
   correctly-structured X12 835 AST (envelope + segments) — this is what
-  Step 5 renders into real EDI text, so get its segment arrays right.
+  Step 4 renders into real EDI text, so get its segment arrays right.
 - **E3**: only allowed to use LLM-style judgment as a bounded fallback in
   the original design; treat its no-fabrication / must-cite-spans
   constraints as hard requirements.
@@ -100,7 +88,7 @@ The 7 stages, in order: Text Ingestor (E1) → Text Structurer (E2) → Remit
 Canonicalizer (E3) → Remit Context Assembler (E4) → X12 Model Builder (E5)
 → Financial Integrity Validator (E6) → Lossless 835 Packager (E7).
 
-## Step 5 — Render the real EDI-835 file
+## Step 4 — Render the real EDI-835 file
 
 E5's `x12_model_package.x12` already contains a complete, correctly
 modeled 835 transaction as segment arrays plus the delimiters to use
@@ -135,22 +123,13 @@ CLP09 always `"1"`, missing payer id defaults to the literal string
 today's date). Only go this route if the user explicitly asks to match
 today's live output rather than get a correct 835.
 
-## Step 6 — Record the run (GitHub datastore)
-
-Per `DATASTORE.md`: write `submissions/era/<yyyy>/<mm>/<id>.json` with
-`request: {variables, content: remit_text, use_cache}` and `response` =
-`stage_results` (include the rendered EDI-835 text alongside it, e.g. as
-`response.edi835_text`). If not a cache hit, also write
-`cache/<cache_key>.json`. Append a line to `audit/log.jsonl`. Commit and
-push.
-
-## Step 7 — Report results
+## Step 5 — Report results
 
 - Whether E6's financial integrity check passed (totals/balancing) and
   any findings it raised
 - The key remittance facts assembled along the way (payer/payee, claims,
   adjustments, amounts) from E3/E4
-- The rendered EDI-835 text from Step 5, and offer to show any
+- The rendered EDI-835 text from Step 4, and offer to show any
   intermediate stage package in full on request
 - Any `warnings`/`errors`/`missing_inputs` surfaced by any stage
 
@@ -161,4 +140,6 @@ push.
 - Several stages in this pipeline were originally deterministic Python
   services, not LLM calls; each stage's `notes` field documents that and
   any known fidelity gap from now running them as an LLM instead (hashing
-  in particular — see Step 4).
+  in particular — see Step 3).
+- This skill only ever reads from `raelango/medikode-agents` — it never
+  commits, pushes, or otherwise writes to it.

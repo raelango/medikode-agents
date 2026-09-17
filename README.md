@@ -3,14 +3,17 @@
 Metadata store **and skill source** for the Medikode pipeline agents. This
 repo is the source of truth for both the **stage definitions** (system/user
 prompts, output schemas, sequencing) and the **Claude Code skill
-definitions** themselves for each Medikode pipeline — replacing SharePoint
-entirely, both as the config store (it used to hold the "Coding Pipeline
-Stages" list) and as the runtime datastore (it now holds what SharePoint's
-Submissions/Audit Logs/Cache lists used to hold — see `DATASTORE.md`).
+definitions** themselves for each Medikode pipeline, replacing the
+SharePoint "Coding Pipeline Stages" list as the config store.
 
-Each skill pulls its stage definitions from here at the start of every run,
-runs the pipeline itself (acting as each stage's model in turn), and writes
-its run record back here instead of to SharePoint.
+Each skill pulls its stage definitions (and, where relevant, `reference/`
+data) from here at the start of every run and runs the pipeline itself,
+acting as each stage's model in turn. **These skills only ever read from
+this repo — none of them write, commit, or push anything to it.** (An
+earlier version had each skill record its run here as a GitHub-backed
+datastore; that was removed — a run's request/response can include real
+patient chart text, which has no business being committed into a git
+repo.)
 
 ## Layout
 
@@ -27,8 +30,6 @@ skills/     medikode-code, medikode-audit, medikode-era, medikode-raf,
 reference/  Specialties, insurances, facilities, vaccine components — the
             SharePoint reference lists the coding pipeline reads today.
             See reference/README.md.
-submissions/, cache/, audit/log.jsonl — the GitHub-backed datastore each
-            skill writes to at the end of a run. See DATASTORE.md.
 ```
 
 Each pipeline's directory holds one JSON file per stage, named
@@ -91,16 +92,17 @@ copied in).
 - 2026-09-17: skills redesigned to take the same inputs as the demo app's
   own forms and produce the same output shapes (verified against the
   app's actual client-side pipeline code and `responseOutputHelper.js`
-  rendering logic, not guessed), added `skills/` (the SKILL.md source for
-  each), and added `DATASTORE.md` + `submissions/`/`cache/`/`audit/`
-  conventions so every run is recorded here instead of SharePoint.
-  `validate/V1`'s output schema was corrected to match the real
+  rendering logic, not guessed), and added `skills/` (the SKILL.md source
+  for each). `validate/V1`'s output schema was corrected to match the real
   `valid_codes`/`invalid_codes`/... contract (an earlier draft used
   non-matching field names). Also discovered the live "era" mode's actual
   EDI generator reads a different, undocumented field shape than its own
   normalization code produces (a real bug in the product, not this repo)
   — see `skills/medikode-era/SKILL.md` for details; the `era/E1-E7`
   pipeline here is a correct alternative, not a bug-for-bug replica.
+  (This same change briefly added a `DATASTORE.md` + `submissions/`/
+  `cache/`/`audit/` write-back convention; it was removed the same day —
+  see below.)
 - 2026-09-17: `reference/` added — one-time live pull (via the Graph API
   credentials already used by the backend) of the SharePoint Specialties,
   Insurances, Facilities, and Vaccine Components lists, the reference data
@@ -111,3 +113,11 @@ copied in).
   than the generic section-header strings the list is meant to hold — a
   data-hygiene issue in the source list worth fixing at the source, not
   something to publish here.
+- 2026-09-17: removed the GitHub-write-back feature (`DATASTORE.md` and
+  the "record the run" step in every skill) added earlier the same day.
+  A `code`/`audit` submission record would include the raw patient chart
+  text and AI-generated diagnosis/procedure codes — real clinical content
+  that has no business being committed into a git repo, regardless of the
+  repo's visibility. No run had actually completed under that design, so
+  nothing needed to be purged from history. All five skills are read-only
+  against this repo now.

@@ -1,6 +1,6 @@
 ---
 name: medikode-audit
-description: Run the Medikode audit/reconciliation pipeline (S11 Recon Normalizer through S15 Recon Narrative Packager) to check AI-generated codes against human-coded codes and chart evidence, flagging unsupported or mismatched codes before a claim goes out. Takes the same inputs as the demo app's "Audit Codes with Medical Chart" form and produces the same per-stage outputs. Stage prompts and schemas are read live from the raelango/medikode-agents GitHub repo, and the run is recorded to that same repo instead of SharePoint. Use when the user invokes /medikode-audit, asks to "audit" or "reconcile" a coded chart, or asks to check AI codes against a human coder's codes.
+description: Run the Medikode audit/reconciliation pipeline (S11 Recon Normalizer through S15 Recon Narrative Packager) to check AI-generated codes against human-coded codes and chart evidence, flagging unsupported or mismatched codes before a claim goes out. Takes the same inputs as the demo app's "Audit Codes with Medical Chart" form and produces the same per-stage outputs. Stage prompts and schemas are read live from the raelango/medikode-agents GitHub repo. This skill only reads from that repo — it never writes or pushes anything to it. Use when the user invokes /medikode-audit, asks to "audit" or "reconcile" a coded chart, or asks to check AI codes against a human coder's codes.
 ---
 
 # medikode-audit
@@ -109,16 +109,7 @@ The 5 stages, in order: Recon Normalizer (S11) → Recon Differ (S12) →
 Recon Evidence Binder (S13) → Recon Adjudicator (S14) → Recon Narrative
 Packager (S15).
 
-## Step 5 — Record the run (GitHub datastore)
-
-Per `DATASTORE.md` in the repo: write a `submissions/audit/<yyyy>/<mm>/<id>.json`
-record with `request: {variables: {...the Step 2 fields..., human_coded_input}, content: chart_text, use_cache}`
-and `response: stage_results` for S11-S15 (the coding pipeline's own S1-S10
-run should already have been recorded under `submissions/code/...` by
-`medikode-code` itself). Append one line to `audit/log.jsonl`. Commit and
-push.
-
-## Step 6 — Report results
+## Step 5 — Report results
 
 Present each stage's package (S11 through S15), matching how the real app
 shows tabs per stage rather than one condensed answer:
@@ -137,3 +128,6 @@ shows tabs per stage rather than one condensed answer:
 - `human_final_claim` is treated as "post-validation" per S11's prompt —
   don't second-guess it as wrong unless deterministic policy/math or clear
   chart contra-evidence makes that unambiguous (S14's rule).
+- This skill (and `medikode-code`, which it depends on) only ever reads
+  from `raelango/medikode-agents` — neither commits, pushes, or otherwise
+  writes to it.

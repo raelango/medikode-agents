@@ -1,6 +1,6 @@
 ---
 name: medikode-code
-description: Run the Medikode multi-stage medical coding pipeline (S1 Prep Chart through S10 Finalize Claim) against a patient chart, taking the same inputs as the Medikode demo app's "Code Medical Records" form and producing the same per-stage outputs. Stage prompts, schemas, and sequencing are read live from the raelango/medikode-agents GitHub repo instead of the old SharePoint "Coding Pipeline Stages" list, and the run is recorded to that same repo instead of SharePoint. Use when the user invokes /medikode-code, asks to run the Medikode coding pipeline, or asks to "code this chart" end to end.
+description: Run the Medikode multi-stage medical coding pipeline (S1 Prep Chart through S10 Finalize Claim) against a patient chart, taking the same inputs as the Medikode demo app's "Code Medical Records" form and producing the same per-stage outputs. Stage prompts, schemas, and sequencing are read live from the raelango/medikode-agents GitHub repo instead of the old SharePoint "Coding Pipeline Stages" list. This skill only reads from that repo — it never writes or pushes anything to it. Use when the user invokes /medikode-code, asks to run the Medikode coding pipeline, or asks to "code this chart" end to end.
 ---
 
 # medikode-code
@@ -16,9 +16,10 @@ big backend call).
 The stage definitions are **not** hardcoded in this skill — they live in
 the `raelango/medikode-agents` GitHub repo (`coding/*.json`) so they can be
 edited without touching this skill file. Always fetch the current versions
-before running; don't rely on a stale local copy. That repo is also where
-this skill records each run (see Step 5) — there's no SharePoint/Graph API
-dependency anywhere in this skill.
+before running; don't rely on a stale local copy. This skill only ever
+reads from that repo (stage definitions and `reference/` data) — it never
+commits, pushes, or otherwise writes to it, and has no SharePoint/Graph API
+dependency either.
 
 This repo also holds stage definitions for four sibling pipelines (`audit/`,
 `era/`, `raf/`, `validate/`), each with its own skill (`medikode-audit`,
@@ -82,8 +83,6 @@ app does today for every version/id field below):
   feed `source_metadata` below.
 - `insurance` — payer name
 - `insurance_type` — plan type (e.g. HMO/PPO)
-- `use_cache` — boolean, default `true` (see Step 5 — mirrors the app's
-  "Use Cache" checkbox)
 
 Don't block the run over missing optional inputs.
 
@@ -127,16 +126,10 @@ that facility type's `encounter_types`/`site_of_care`/`default_claim_type`/
 (it's a real signal something was mistyped or misselected) — but don't
 block the run over it, since the pipeline can still execute.
 
-## Step 3 — Build the running inputs bag and check the cache
+## Step 3 — Build the running inputs bag
 
-Compute `cache_key = sha256(json.dumps({mode:"code", variables, content: chart_text}, sort_keys=true))`
-where `variables` is every optional field from Step 2. Per `DATASTORE.md`
-in the repo: if `use_cache` is true and `cache/<cache_key>.json` exists,
-read its `response`, skip straight to Step 6 with that cached per-stage
-output, and tell the user you used a cached result.
-
-Otherwise, build the running `inputs` bag stage by stage exactly as the
-real app does:
+Build the running `inputs` bag stage by stage exactly as the real app
+does:
 
 - `source_metadata` (used by S1 and S2) = `{facility, encounter_type,
   patient_status, site_of_care, claim_type, specialty, insurance,
@@ -202,17 +195,7 @@ Facts (S3) → Check Completeness (S4) → Initial Codes (S5) → Specialty
 Rules (S6) → Payer Edits (S7) → Verify Codes (S8) → Notes Queries (S9) →
 Finalize Claim (S10).
 
-## Step 5 — Record the run (GitHub datastore)
-
-Per `DATASTORE.md` in the repo: write a `submissions/code/<yyyy>/<mm>/<id>.json`
-record with `request: {variables, content: chart_text, use_cache}` and
-`response: stage_results` (the full per-stage dict from Step 4). If this
-wasn't a cache hit, also write `cache/<cache_key>.json` with
-`response: stage_results`. Append one line to `audit/log.jsonl`. Commit and
-push. This replaces the SharePoint "Submissions"/"Audit Logs" writes the
-real app makes on every run.
-
-## Step 6 — Report results
+## Step 5 — Report results
 
 The real app has no single condensed "final answer" for this pipeline —
 like it, present each stage's package (the tabs it would show), not just a
