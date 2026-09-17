@@ -1,12 +1,16 @@
 # medikode-agents
 
-Metadata store for the Medikode pipeline agents. This repo is the source of
-truth for **stage definitions** (system/user prompts, output schemas,
-sequencing) for each Medikode pipeline. It's read by the `medikode-code`,
-`medikode-audit`, `medikode-validate`, `medikode-raf`, and `medikode-era`
-Claude Code skills (installed as personal skills), each of which pulls the
-current stage definitions from here and runs the pipeline itself, acting as
-each stage's model in turn.
+Metadata store **and skill source** for the Medikode pipeline agents. This
+repo is the source of truth for both the **stage definitions** (system/user
+prompts, output schemas, sequencing) and the **Claude Code skill
+definitions** themselves for each Medikode pipeline — replacing SharePoint
+entirely, both as the config store (it used to hold the "Coding Pipeline
+Stages" list) and as the runtime datastore (it now holds what SharePoint's
+Submissions/Audit Logs/Cache lists used to hold — see `DATASTORE.md`).
+
+Each skill pulls its stage definitions from here at the start of every run,
+runs the pipeline itself (acting as each stage's model in turn), and writes
+its run record back here instead of to SharePoint.
 
 ## Layout
 
@@ -16,6 +20,12 @@ audit/      S11 - S15   Reconcile AI-coded vs. human-coded claims against chart 
 era/        E1  - E7    Turn free-text EOB/remittance content into a lossless 835 package
 raf/        R1          Compute a CMS-HCC Risk Adjustment Factor score
 validate/   V1          Check code-pair combinations for compliance
+skills/     medikode-code, medikode-audit, medikode-era, medikode-raf,
+            medikode-validate — the canonical SKILL.md for each Claude Code
+            skill. Install/update a skill by copying its folder into
+            ~/.claude/skills/.
+submissions/, cache/, audit/log.jsonl — the GitHub-backed datastore each
+            skill writes to at the end of a run. See DATASTORE.md.
 ```
 
 Each pipeline's directory holds one JSON file per stage, named
@@ -54,6 +64,13 @@ are read directly from each file's `sequence` / `enabled` fields.
 
 Edit the relevant `<pipeline>/<stage_id>-<slug>.json` file and commit.
 
+## Updating a skill
+
+Edit `skills/<name>/SKILL.md` here, then copy it over the installed copy
+at `~/.claude/skills/<name>/SKILL.md` (Claude Code loads skills from disk
+at session start, so this repo copy alone doesn't take effect until it's
+copied in).
+
 ## History
 
 - 2026-09-11: `coding/` (S1-S10) migrated one-time from the SharePoint
@@ -68,3 +85,16 @@ Edit the relevant `<pipeline>/<stage_id>-<slug>.json` file and commit.
   from scratch based on the product's own description of what it does and
   standard NCCI/CCI/MUE claims-editing practice, and should be treated as a
   draft to refine rather than a faithful migration.
+- 2026-09-17: skills redesigned to take the same inputs as the demo app's
+  own forms and produce the same output shapes (verified against the
+  app's actual client-side pipeline code and `responseOutputHelper.js`
+  rendering logic, not guessed), added `skills/` (the SKILL.md source for
+  each), and added `DATASTORE.md` + `submissions/`/`cache/`/`audit/`
+  conventions so every run is recorded here instead of SharePoint.
+  `validate/V1`'s output schema was corrected to match the real
+  `valid_codes`/`invalid_codes`/... contract (an earlier draft used
+  non-matching field names). Also discovered the live "era" mode's actual
+  EDI generator reads a different, undocumented field shape than its own
+  normalization code produces (a real bug in the product, not this repo)
+  — see `skills/medikode-era/SKILL.md` for details; the `era/E1-E7`
+  pipeline here is a correct alternative, not a bug-for-bug replica.
