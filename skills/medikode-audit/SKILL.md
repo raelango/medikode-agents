@@ -38,11 +38,13 @@ Read every `audit/S1*.json` file (S11-S15), keep `enabled: true`, sort by
 
 This is the same form as `medikode-code` (specialty, encounter type,
 patient status, site of care, claim type, facility, insurance,
-insurance type, guidelines, chart text) **plus** the human coder's codes.
-If the user already has S1/S2/S3/S10 outputs from a `medikode-code` run
-earlier in this conversation for the same chart, reuse them; otherwise run
-`medikode-code`'s Step 1-4 yourself first (same inputs) to produce them —
-tell the user you're doing this.
+insurance type, chart text) **plus** the human coder's codes. If the user
+already has S1/S2/S3/S10 outputs from a `medikode-code` run earlier in this
+conversation for the same chart, reuse them; otherwise run `medikode-code`'s
+Step 1-4 yourself first (same inputs) to produce them — tell the user
+you're doing this. That includes `medikode-code`'s own specialty/insurance
+guideline lookup against `reference/specialties.json`/`insurances.json` and
+its facility-type sanity check — nothing extra to do here for those.
 
 Additionally, ask the user directly for:
 

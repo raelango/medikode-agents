@@ -25,9 +25,9 @@ This repo also holds stage definitions for four sibling pipelines (`audit/`,
 `medikode-era`, `medikode-raf`, `medikode-validate`). This skill only reads
 `coding/`.
 
-## Step 1 — Load stage definitions
+## Step 1 — Load stage definitions and reference data
 
-Get a fresh copy of the stage metadata:
+Get a fresh copy of the repo:
 
 ```
 git -C <cache-dir> pull --ff-only  ||  git clone --depth 1 https://github.com/raelango/medikode-agents.git <cache-dir>
@@ -51,6 +51,12 @@ stages, and sort ascending by `sequence`. Each stage file has:
   path — that's where its value comes from)
 - `max_output_tokens`, `temperature`, `notes`, `schema_version`
 
+Also read `reference/specialties.json`, `reference/insurances.json`, and
+`reference/facilities.json` — this is a one-time export of the same
+SharePoint lists the real app's dropdowns/guideline lookups draw on (see
+`reference/README.md`). Step 2 uses these to resolve guideline text
+automatically instead of asking the user to paste it.
+
 ## Step 2 — Gather inputs
 
 These mirror exactly the fields on the demo app's "Code Medical Records"
@@ -72,19 +78,54 @@ app does today for every version/id field below):
 - `claim_type` — claim category
 - `facility` — a small object describing the facility:
   `{name, facility_type, facility_teaching_status, locations: [], providers: [], guidelines}`.
-  Only `guidelines` (facility-specific free text) is used directly; the
-  rest feed `source_metadata` below.
+  `guidelines` (facility-specific free text) is used directly; the rest
+  feed `source_metadata` below.
 - `insurance` — payer name
 - `insurance_type` — plan type (e.g. HMO/PPO)
-- `insurance_guidelines` — payer-specific guideline text (in the real app
-  this is fetched separately once `insurance`/`insurance_type` are picked;
-  if the user has it, use it, otherwise leave blank)
-- `specialty_guidelines` — specialty-specific guideline text (same idea,
-  fetched from `specialty` in the real app; use if the user has it)
 - `use_cache` — boolean, default `true` (see Step 5 — mirrors the app's
   "Use Cache" checkbox)
 
 Don't block the run over missing optional inputs.
+
+**Resolve guidelines from `reference/` instead of asking for them** — this
+is what the real app does too (it fetches these once a dropdown value is
+picked, rather than making the user paste guideline text):
+
+- `specialty_guidelines`: find the entry in `reference/specialties.json`
+  whose `title` matches `specialty` case-insensitively. If found, use its
+  `guidelines` field verbatim. If not found (or `specialty` was left
+  blank), tell the user no on-file guidelines matched and ask if they want
+  to paste guideline text manually or proceed without any — don't guess a
+  close match silently.
+- `insurance_guidelines`: find the entry in `reference/insurances.json`
+  whose `title` matches `insurance` case-insensitively. If found, render
+  it as a short text block (not just the raw `guidelines` field, since
+  the payer's policy fields matter here too):
+  ```
+  Insurance: {title}
+  Payer Type(s): {payer_types joined by ", ", or "Unknown"}
+  Primary Payer Type: {primary_payer_type or "Unknown"}
+  Specimen Collection Policy: {specimen_collection_policy}
+  QW Requirement Policy: {qw_requirement_policy}
+  Vaccine Funding Source Policy: {vaccine_funding_source_policy}
+  Vaccine Funding Applies To: {vaccine_funding_apply_to}
+  Guidelines:
+  {guidelines, or "(none on file)"}
+  ```
+  If no entry matches, same fallback as above: tell the user, offer manual
+  paste or proceeding without.
+
+If the user explicitly provides `specialty_guidelines`/`insurance_guidelines`
+text themselves, that overrides the lookup — don't discard what they gave
+you in favor of a reference-data match.
+
+**Sanity-check the facility context** — if `facility.facility_type` is set,
+look it up in `reference/facilities.json`. If found, and any of
+`encounter_type`, `site_of_care`, `claim_type`, or `specialty` isn't in
+that facility type's `encounter_types`/`site_of_care`/`default_claim_type`/
+`specialties` lists, mention the mismatch to the user before running
+(it's a real signal something was mistyped or misselected) — but don't
+block the run over it, since the pipeline can still execute.
 
 ## Step 3 — Build the running inputs bag and check the cache
 
@@ -198,3 +239,14 @@ narrative:
   never enter S1-S10 at all — audit mode runs this exact same pipeline
   blind to the human's answer, and only compares against it afterward at
   S11. Do the same: don't let a human code list influence this run.
+- `reference/vaccine_components.json` also exists in the repo but isn't
+  used by this skill: it backs a 90460/90461 multi-component-vaccine
+  bundling correction (`backend/app/validations.py`'s `_validate_90461`)
+  that the real app only ever applies to its older, non-v2 "code" response
+  shape — the v2 pipeline this skill replays never actually calls it
+  today, so wiring it in here would add behavior the live pipeline doesn't
+  have, not match it.
+- To change which reference data is available, edit
+  `raelango/medikode-agents/reference/*.json` — see `reference/README.md`
+  for how each file was sourced and its refresh status (these are a
+  one-time export, not a live sync).
