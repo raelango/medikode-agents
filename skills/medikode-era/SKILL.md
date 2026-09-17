@@ -15,8 +15,8 @@ chaining each stage's JSON output into the next.
 
 **Important caveat, surface this to the user before running:** the real
 product's live "era" mode is a *single* opaque call to an externally
-configured assistant (its instructions live entirely in a SharePoint
-record, not in this codebase), whose reply then goes through a legacy
+configured assistant (its instructions live entirely in an internal
+configuration record, not in this repo), whose reply then goes through a legacy
 JS function to produce EDI text — and that function has a real bug: it
 computes a nicely-normalized document shape (`sender`/`recipient`/
 `summary`/`claim_information`) but then never actually uses it, reading a

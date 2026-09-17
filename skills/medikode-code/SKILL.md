@@ -1,6 +1,6 @@
 ---
 name: medikode-code
-description: Run the Medikode multi-stage medical coding pipeline (S1 Prep Chart through S10 Finalize Claim) against a patient chart, taking the same inputs as the Medikode demo app's "Code Medical Records" form and producing the same per-stage outputs. Stage prompts, schemas, and sequencing are read live from the raelango/medikode-agents GitHub repo instead of the old SharePoint "Coding Pipeline Stages" list. This skill only reads from that repo — it never writes or pushes anything to it. Use when the user invokes /medikode-code, asks to run the Medikode coding pipeline, or asks to "code this chart" end to end.
+description: Run the Medikode multi-stage medical coding pipeline (S1 Prep Chart through S10 Finalize Claim) against a patient chart, taking the same inputs as the Medikode demo app's "Code Medical Records" form and producing the same per-stage outputs. Stage prompts, schemas, and sequencing are read live from the raelango/medikode-agents GitHub repo instead of an internal configuration list. This skill only reads from that repo — it never writes or pushes anything to it. Use when the user invokes /medikode-code, asks to run the Medikode coding pipeline, or asks to "code this chart" end to end.
 ---
 
 # medikode-code
@@ -18,8 +18,8 @@ the `raelango/medikode-agents` GitHub repo (`coding/*.json`) so they can be
 edited without touching this skill file. Always fetch the current versions
 before running; don't rely on a stale local copy. This skill only ever
 reads from that repo (stage definitions and `reference/` data) — it never
-commits, pushes, or otherwise writes to it, and has no SharePoint/Graph API
-dependency either.
+commits, pushes, or otherwise writes to it, and has no dependency on any
+internal company system either.
 
 This repo also holds stage definitions for four sibling pipelines (`audit/`,
 `era/`, `raf/`, `validate/`), each with its own skill (`medikode-audit`,
@@ -54,9 +54,9 @@ stages, and sort ascending by `sequence`. Each stage file has:
 
 Also read `reference/specialties.json`, `reference/insurances.json`, and
 `reference/facilities.json` — this is a one-time export of the same
-SharePoint lists the real app's dropdowns/guideline lookups draw on (see
-`reference/README.md`). Step 2 uses these to resolve guideline text
-automatically instead of asking the user to paste it.
+internal reference lists the real app's dropdowns/guideline lookups draw
+on (see `reference/README.md`). Step 2 uses these to resolve guideline
+text automatically instead of asking the user to paste it.
 
 ## Step 2 — Gather inputs
 
@@ -161,8 +161,8 @@ does:
   `case_disposition_package` (S9), `coding_readiness_report` (S4)
 
 (The real app also threads a `previous_response_id` between stages for its
-own backend's response-caching — that's an implementation detail of its
-OpenAI Responses API usage, not something you need to replicate.)
+own backend's response-caching — that's an internal implementation detail,
+not something you need to replicate.)
 
 ## Step 4 — Run each stage in sequence
 
@@ -224,8 +224,8 @@ narrative:
   S11. Do the same: don't let a human code list influence this run.
 - `reference/vaccine_components.json` also exists in the repo but isn't
   used by this skill: it backs a 90460/90461 multi-component-vaccine
-  bundling correction (`backend/app/validations.py`'s `_validate_90461`)
-  that the real app only ever applies to its older, non-v2 "code" response
+  bundling correction in the backend that the real app only ever applies
+  to its older, non-v2 "code" response
   shape — the v2 pipeline this skill replays never actually calls it
   today, so wiring it in here would add behavior the live pipeline doesn't
   have, not match it.

@@ -3,8 +3,8 @@
 Metadata store **and skill source** for the Medikode pipeline agents. This
 repo is the source of truth for both the **stage definitions** (system/user
 prompts, output schemas, sequencing) and the **Claude Code skill
-definitions** themselves for each Medikode pipeline, replacing the
-SharePoint "Coding Pipeline Stages" list as the config store.
+definitions** themselves for each Medikode pipeline, replacing an internal
+configuration list as the config store.
 
 Each skill pulls its stage definitions (and, where relevant, `reference/`
 data) from here at the start of every run and runs the pipeline itself,
@@ -28,8 +28,8 @@ skills/     medikode-code, medikode-audit, medikode-era, medikode-raf,
             skill. Install/update a skill by copying its folder into
             ~/.claude/skills/.
 reference/  Specialties, insurances, facilities, vaccine components — the
-            SharePoint reference lists the coding pipeline reads today.
-            See reference/README.md.
+            reference lists the coding pipeline reads today. See
+            reference/README.md.
 ```
 
 Each pipeline's directory holds one JSON file per stage, named
@@ -77,42 +77,40 @@ copied in).
 
 ## History
 
-- 2026-09-11: `coding/` (S1-S10) migrated one-time from the SharePoint
-  `Coding Pipeline Stages` list.
-- 2026-09-11: `audit/` (S11-S15) and `era/` (E1-E7) extracted from this
-  repo's own engineering handoff docs (`Artifacts/S11-*.md` .. `S15-*.md`,
-  `Artifacts/E1-*.md` .. `E7-*.md`) and cross-checked against the real
-  client orchestration wiring. `raf/` (R1) migrated verbatim from the
-  backend's `/rafscore` endpoint prompt. `validate/` (V1) has no known
-  source prompt anywhere in the codebase (the product's "Validate Code
-  Combinations" mode calls an external, opaque service) — it was written
-  from scratch based on the product's own description of what it does and
-  standard NCCI/CCI/MUE claims-editing practice, and should be treated as a
-  draft to refine rather than a faithful migration.
+- 2026-09-11: `coding/` (S1-S10) migrated one-time from an internal
+  configuration list.
+- 2026-09-11: `audit/` (S11-S15) and `era/` (E1-E7) extracted from
+  internal engineering specs and cross-checked against the real client
+  orchestration wiring. `raf/` (R1) migrated verbatim from the backend's
+  RAF-scoring endpoint prompt. `validate/` (V1) has no known source
+  prompt anywhere accessible (the product's "Validate Code Combinations"
+  mode calls an external, opaque service) — it was written from scratch
+  based on the product's own description of what it does and standard
+  NCCI/CCI/MUE claims-editing practice, and should be treated as a draft
+  to refine rather than a faithful migration.
 - 2026-09-17: skills redesigned to take the same inputs as the demo app's
   own forms and produce the same output shapes (verified against the
-  app's actual client-side pipeline code and `responseOutputHelper.js`
-  rendering logic, not guessed), and added `skills/` (the SKILL.md source
-  for each). `validate/V1`'s output schema was corrected to match the real
-  `valid_codes`/`invalid_codes`/... contract (an earlier draft used
-  non-matching field names). Also discovered the live "era" mode's actual
-  EDI generator reads a different, undocumented field shape than its own
-  normalization code produces (a real bug in the product, not this repo)
-  — see `skills/medikode-era/SKILL.md` for details; the `era/E1-E7`
-  pipeline here is a correct alternative, not a bug-for-bug replica.
+  app's actual client-side code and rendering logic, not guessed), and
+  added `skills/` (the SKILL.md source for each). `validate/V1`'s output
+  schema was corrected to match the real `valid_codes`/`invalid_codes`/...
+  contract (an earlier draft used non-matching field names). Also
+  discovered the live "era" mode's actual EDI generator reads a
+  different, undocumented field shape than its own normalization code
+  produces (a real bug in the product, not this repo) — see
+  `skills/medikode-era/SKILL.md` for details; the `era/E1-E7` pipeline
+  here is a correct alternative, not a bug-for-bug replica.
   (This same change briefly added a `DATASTORE.md` + `submissions/`/
   `cache/`/`audit/` write-back convention; it was removed the same day —
   see below.)
-- 2026-09-17: `reference/` added — one-time live pull (via the Graph API
-  credentials already used by the backend) of the SharePoint Specialties,
-  Insurances, Facilities, and Vaccine Components lists, the reference data
-  the "code"/"audit" pipelines' specialty/insurance/facility fields draw
-  on in the real app. The SharePoint "S1 Header Mappings" list was
-  deliberately NOT migrated: several of its records contain what looks
-  like real chart-excerpt text (allergies, medications, procedures) rather
-  than the generic section-header strings the list is meant to hold — a
-  data-hygiene issue in the source list worth fixing at the source, not
-  something to publish here.
+- 2026-09-17: `reference/` added — one-time export of Specialty,
+  Insurance, Facility, and Vaccine Component reference data from an
+  internal system, the data the "code"/"audit" pipelines'
+  specialty/insurance/facility fields draw on in the real app. One
+  related internal list was deliberately NOT migrated: several of its
+  records contain what looks like real chart-excerpt text (allergies,
+  medications, procedures) rather than the generic section-header
+  strings it's meant to hold — a data-hygiene issue worth fixing at the
+  source, not something to publish here.
 - 2026-09-17: removed the GitHub-write-back feature (`DATASTORE.md` and
   the "record the run" step in every skill) added earlier the same day.
   A `code`/`audit` submission record would include the raw patient chart

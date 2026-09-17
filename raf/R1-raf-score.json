@@ -11,7 +11,7 @@
   "output_schema": "{\n  \"raf\": {\n    \"hcc\": 0,\n    \"final\": 0,\n    \"demographic\": 0,\n    \"interaction\": 0\n  },\n  \"model_used\": \"\",\n  \"calculation\": \"\",\n  \"hcc_categories\": {}\n}",
   "max_output_tokens": 3000,
   "temperature": 0.1,
-  "notes": "Migrated verbatim from _build_raf_messages()/_execute_raf_calculation() in backend/app/main.py (public /rafscore endpoint). model must be one of the supported CMS-HCC model versions (V28, V24) — this repo doesn't hardcode that restriction into the prompt, but the skill should validate it before running.",
+  "notes": "Migrated verbatim from _build_raf_messages()/_execute_raf_calculation() in the backend's public RAF-scoring endpoint. model must be one of the supported CMS-HCC model versions (V28, V24) — this repo doesn't hardcode that restriction into the prompt, but the skill should validate it before running.",
   "input_keys": ["demographics", "illnesses", "model"],
   "variable_map": {
     "demographics": "inputs.demographics",

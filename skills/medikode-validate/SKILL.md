@@ -13,16 +13,16 @@ add-on codes without their primary, unspecified diagnoses). This is the
 against compliance edits and payer-specific rules in real time").
 
 **Important caveat, surface this to the user before running:** the real
-product resolves "validate" mode to an assistant record configured
-entirely in SharePoint (its actual instructions live in a `context_prompt`/
-`output_prompt` pair on that record, calling out to an external agent) —
-there is no source prompt for it anywhere in the codebase to migrate
-faithfully. The `validate/V1-*.json` stage definition's *system/user
-prompt* in the GitHub repo is therefore a from-scratch reconstruction
-based on the product's own description of what it does and standard
-NCCI/CCI/MUE claims-editing practice. Its *output shape*, however, is not
-a guess — it's grounded in the real frontend rendering code, which reads
-exactly `valid_codes`, `invalid_codes`, `summary`, `coding_year`,
+product resolves "validate" mode to an internal configuration record
+(its actual instructions live in a `context_prompt`/`output_prompt` pair
+on that record, calling out to an external agent) — there is no source
+prompt for it anywhere in this repo to migrate faithfully. The
+`validate/V1-*.json` stage definition's *system/user prompt* in the
+GitHub repo is therefore a from-scratch reconstruction based on the
+product's own description of what it does and standard NCCI/CCI/MUE
+claims-editing practice. Its *output shape*, however, is not a guess —
+it's grounded in the real app's rendering code, which reads exactly
+`valid_codes`, `invalid_codes`, `summary`, `coding_year`,
 `denial_risk`, `final_codes`, `code_conflicts`, `issues`, and
 `recommended_changes` off the reply. So treat the prompt's *reasoning* as
 a reasonable best-effort check, but its *output shape* as a faithful match
