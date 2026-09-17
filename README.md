@@ -24,6 +24,9 @@ skills/     medikode-code, medikode-audit, medikode-era, medikode-raf,
             medikode-validate — the canonical SKILL.md for each Claude Code
             skill. Install/update a skill by copying its folder into
             ~/.claude/skills/.
+reference/  Specialties, insurances, facilities, vaccine components — the
+            SharePoint reference lists the coding pipeline reads today.
+            See reference/README.md.
 submissions/, cache/, audit/log.jsonl — the GitHub-backed datastore each
             skill writes to at the end of a run. See DATASTORE.md.
 ```
@@ -98,3 +101,13 @@ copied in).
   normalization code produces (a real bug in the product, not this repo)
   — see `skills/medikode-era/SKILL.md` for details; the `era/E1-E7`
   pipeline here is a correct alternative, not a bug-for-bug replica.
+- 2026-09-17: `reference/` added — one-time live pull (via the Graph API
+  credentials already used by the backend) of the SharePoint Specialties,
+  Insurances, Facilities, and Vaccine Components lists, the reference data
+  the "code"/"audit" pipelines' specialty/insurance/facility fields draw
+  on in the real app. The SharePoint "S1 Header Mappings" list was
+  deliberately NOT migrated: several of its records contain what looks
+  like real chart-excerpt text (allergies, medications, procedures) rather
+  than the generic section-header strings the list is meant to hold — a
+  data-hygiene issue in the source list worth fixing at the source, not
+  something to publish here.

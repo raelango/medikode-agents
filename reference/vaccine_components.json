@@ -1,0 +1,86 @@
+[
+  {
+    "item_id": "1",
+    "title": "DTaP",
+    "cpt": "90700",
+    "component_count": 3.0,
+    "description": "Diphtheria + Tetanus + acellular Pertussis"
+  },
+  {
+    "item_id": "2",
+    "title": "Tdap",
+    "cpt": "90715",
+    "component_count": 3.0,
+    "description": "Tetanus + reduced Diphtheria + acellular Pertussis"
+  },
+  {
+    "item_id": "3",
+    "title": "Td",
+    "cpt": "90714",
+    "component_count": 2.0,
+    "description": "Tetanus + reduced Diphtheria"
+  },
+  {
+    "item_id": "4",
+    "title": "DT",
+    "cpt": "90714",
+    "component_count": 2.0,
+    "description": "Diphtheria + Tetanus"
+  },
+  {
+    "item_id": "5",
+    "title": "MMR",
+    "cpt": "90707",
+    "component_count": 3.0,
+    "description": "Measles + Mumps + Rubella"
+  },
+  {
+    "item_id": "6",
+    "title": "MMRV",
+    "cpt": "90710",
+    "component_count": 4.0,
+    "description": "Measles + Mumps + Rubella + Varicella"
+  },
+  {
+    "item_id": "7",
+    "title": "DTaP-IPV",
+    "cpt": "90696",
+    "component_count": 4.0,
+    "description": "DTaP (3) + Polio (1)"
+  },
+  {
+    "item_id": "8",
+    "title": "DTaP-HepB-IPV",
+    "cpt": "90723",
+    "component_count": 5.0,
+    "description": "DTaP (3) + Hepatitis B (1) + Polio (1)"
+  },
+  {
+    "item_id": "9",
+    "title": "DTaP-IPV/Hib",
+    "cpt": "90698",
+    "component_count": 5.0,
+    "description": "DTaP (3) + Polio (1) + Hib (1)"
+  },
+  {
+    "item_id": "10",
+    "title": "DTaP-IPV-Hib-HepB",
+    "cpt": "90697",
+    "component_count": 6.0,
+    "description": "DTaP (3) + Polio (1) + Hib (1) + Hepatitis B (1)"
+  },
+  {
+    "item_id": "11",
+    "title": "HepA-HepB",
+    "cpt": "90636",
+    "component_count": 2.0,
+    "description": "Hepatitis A + Hepatitis B"
+  },
+  {
+    "item_id": "12",
+    "title": "DT-Pediatric",
+    "cpt": "90702",
+    "component_count": 2.0,
+    "description": "Diphtheria + Tetanus (pediatric formulation)"
+  }
+]

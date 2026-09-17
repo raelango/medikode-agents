@@ -1,0 +1,930 @@
+[
+  {
+    "id": "2",
+    "title": "Alignment Healthcare",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:21:14Z"
+  },
+  {
+    "id": "1",
+    "title": "All Savers Insurance Company",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:30:29Z"
+  },
+  {
+    "id": "3",
+    "title": "AlohaCare",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Commercial",
+      "Medicaid",
+      "Self Pay",
+      "Medicare"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:24:05Z"
+  },
+  {
+    "id": "4",
+    "title": "Amerigroup",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Commercial",
+      "Medicaid",
+      "Self Pay",
+      "Medicare",
+      "Unknown"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:24:16Z"
+  },
+  {
+    "id": "5",
+    "title": "AmeriHealth / AmeriHealth Caritas",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Self Pay",
+      "Commercial",
+      "Unknown",
+      "Medicaid"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:24:28Z"
+  },
+  {
+    "id": "6",
+    "title": "AultCare",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Commercial",
+      "Medicaid",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:24:38Z"
+  },
+  {
+    "id": "7",
+    "title": "Avera Health Plans",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Commercial",
+      "Medicaid",
+      "Self Pay",
+      "Unknown",
+      "Medicare"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:24:49Z"
+  },
+  {
+    "id": "8",
+    "title": "AvMed",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Commercial",
+      "Medicaid",
+      "Self Pay",
+      "Medicare"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:25:04Z"
+  },
+  {
+    "id": "10",
+    "title": "Baylor Scott & White Health Plan",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Medicaid",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:25:23Z"
+  },
+  {
+    "id": "9",
+    "title": "Baystate Health Insurance",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Medicaid",
+      "Commercial"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:44Z",
+    "modified": "2026-02-12T19:25:12Z"
+  },
+  {
+    "id": "11",
+    "title": "Blue Cross and Blue Shield of New Mexico",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:25:39Z"
+  },
+  {
+    "id": "12",
+    "title": "Blue Cross Blue Shield of Alabama",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:25:48Z"
+  },
+  {
+    "id": "13",
+    "title": "Blue Cross Blue Shield of Arizona",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:13Z"
+  },
+  {
+    "id": "14",
+    "title": "Blue Cross Blue Shield of Georgia",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:13Z"
+  },
+  {
+    "id": "15",
+    "title": "Blue Cross Blue Shield of Illinois",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:13Z"
+  },
+  {
+    "id": "16",
+    "title": "Blue Cross Blue Shield of Massachusetts",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "17",
+    "title": "Blue Cross Blue Shield of Michigan",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "18",
+    "title": "Blue Cross Blue Shield of Minnesota",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "19",
+    "title": "Blue Cross Blue Shield of Mississippi",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "20",
+    "title": "Blue Cross Blue Shield of Nebraska",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "21",
+    "title": "Blue Cross Blue Shield of North Carolina",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "22",
+    "title": "Blue Cross Blue Shield of South Carolina",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "23",
+    "title": "Blue Cross Blue Shield of Texas",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "24",
+    "title": "Blue Shield of California",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "25",
+    "title": "BlueCross BlueShield of Oklahoma",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "26",
+    "title": "BlueCross BlueShield of Tennessee",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "27",
+    "title": "Bright Health",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:45Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "28",
+    "title": "CareFirst",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Allow",
+    "qw_requirement_policy": "All",
+    "vaccine_funding_source_policy": "Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay",
+      "Unknown"
+    ],
+    "primary_payer_type": "Medicare",
+    "vaccine_funding_apply_to": "Products+Admin",
+    "guidelines": "CareFirst pays for specimen collection.\nQW modifier required for point-of-care and lab tests as well as specimen collection.\nWhen VaccineFundingSourcePolicy is Required: append VaccineFundingModifier to all vaccine product CPTs and vaccine administration CPTs (90460/90461).",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-01-07T12:50:19Z"
+  },
+  {
+    "id": "29",
+    "title": "CareSource",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:29:03Z"
+  },
+  {
+    "id": "30",
+    "title": "Centene Corporation (Ambetter)",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:29:12Z"
+  },
+  {
+    "id": "31",
+    "title": "Cigna Healthcare",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:29:20Z"
+  },
+  {
+    "id": "32",
+    "title": "CVS Health (Aetna)",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay",
+      "Unknown"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:29:35Z"
+  },
+  {
+    "id": "33",
+    "title": "Elevance Health (Anthem)",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:30:14Z"
+  },
+  {
+    "id": "34",
+    "title": "EmblemHealth",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Medicaid",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:23:12Z"
+  },
+  {
+    "id": "35",
+    "title": "GuideWell (Florida Blue)",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare"
+    ],
+    "primary_payer_type": "Medicare",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-01-12T13:08:16Z"
+  },
+  {
+    "id": "36",
+    "title": "Health Care Service Corporation (HCSC)",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Medicaid",
+      "Commercial"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:23:03Z"
+  },
+  {
+    "id": "37",
+    "title": "Health Net",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Commercial",
+      "Medicaid",
+      "Medicare"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:23:45Z"
+  },
+  {
+    "id": "38",
+    "title": "Highmark",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:22:52Z"
+  },
+  {
+    "id": "39",
+    "title": "Horizon Blue Cross Blue Shield of New Jersey",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Medicaid",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:11:20Z"
+  },
+  {
+    "id": "40",
+    "title": "Humana",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Medicaid",
+      "Self Pay",
+      "Commercial",
+      "Unknown"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:22:38Z"
+  },
+  {
+    "id": "41",
+    "title": "Independence Blue Cross",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:27:35Z"
+  },
+  {
+    "id": "42",
+    "title": "Kaiser Permanente",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:27:45Z"
+  },
+  {
+    "id": "43",
+    "title": "L.A. Care",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:28:01Z"
+  },
+  {
+    "id": "44",
+    "title": "Molina Healthcare",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:28:14Z"
+  },
+  {
+    "id": "45",
+    "title": "Oscar Health",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:28:24Z"
+  },
+  {
+    "id": "46",
+    "title": "Point32Health (Harvard Pilgrim / Tufts)",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicare",
+      "Medicaid",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:28:35Z"
+  },
+  {
+    "id": "47",
+    "title": "Premera Blue Cross",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:46Z",
+    "modified": "2026-02-12T19:28:45Z"
+  },
+  {
+    "id": "48",
+    "title": "UnitedHealth Group / UnitedHealthcare",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:47Z",
+    "modified": "2026-02-12T19:26:09Z"
+  },
+  {
+    "id": "49",
+    "title": "UPMC Health Plan",
+    "payer_bundling_policy": null,
+    "specimen_collection_policy": "Unknown",
+    "qw_requirement_policy": "Unknown",
+    "vaccine_funding_source_policy": "Not Required",
+    "payer_types": [
+      "Medicaid",
+      "Medicare",
+      "Commercial",
+      "Self Pay"
+    ],
+    "primary_payer_type": "",
+    "vaccine_funding_apply_to": "AdminOnly",
+    "guidelines": "",
+    "created": "2025-12-26T02:31:47Z",
+    "modified": "2026-02-12T19:26:01Z"
+  }
+]
