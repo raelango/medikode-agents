@@ -144,9 +144,9 @@ copied in).
   repo's visibility. No run had actually completed under that design, so
   nothing needed to be purged from history. All five skills are read-only
   against this repo now.
-- 2026-09-19: SharePoint and other internal-system references scrubbed
-  from the working tree (this repo is public) — replaced with generic
-  phrasing throughout. Git history was left as-is (not rewritten).
+- 2026-09-19: internal-system references scrubbed from the working tree
+  (this repo is public) — replaced with generic phrasing throughout. Git
+  history was left as-is (not rewritten).
 - 2026-09-19: `validate/data/` added — a real NCCI Procedure-to-Procedure
   (PTP) edits dataset (Git LFS), trimmed from ~868MB of source data down
   to ~48MB (1,732,834 practitioner + 1,406,713 hospital edit pairs).
