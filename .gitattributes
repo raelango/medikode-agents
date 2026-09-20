@@ -1,0 +1,2 @@
+validate/data/ncci_ptp_practitioner.txt filter=lfs diff=lfs merge=lfs -text
+validate/data/ncci_ptp_hospital.txt filter=lfs diff=lfs merge=lfs -text
