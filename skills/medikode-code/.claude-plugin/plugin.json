@@ -1,0 +1,14 @@
+{
+  "name": "medikode-code",
+  "displayName": "Medikode Code",
+  "description": "Run the Medikode multi-stage medical coding pipeline (S1 Prep Chart through S10 Finalize Claim) against a patient chart, end to end.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Arasu Elango",
+    "url": "https://github.com/raelango"
+  },
+  "homepage": "https://github.com/raelango/medikode-agents",
+  "repository": "https://github.com/raelango/medikode-agents",
+  "license": "MIT",
+  "keywords": ["medical-coding", "healthcare", "cpt", "icd-10", "claims"]
+}

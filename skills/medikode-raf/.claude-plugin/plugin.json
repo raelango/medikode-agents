@@ -1,0 +1,14 @@
+{
+  "name": "medikode-raf",
+  "displayName": "Medikode RAF",
+  "description": "Compute a CMS-HCC Risk Adjustment Factor (RAF) score from patient demographics and diagnoses (V28/V24).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Arasu Elango",
+    "url": "https://github.com/raelango"
+  },
+  "homepage": "https://github.com/raelango/medikode-agents",
+  "repository": "https://github.com/raelango/medikode-agents",
+  "license": "MIT",
+  "keywords": ["healthcare", "risk-adjustment", "cms-hcc", "raf", "medicare"]
+}

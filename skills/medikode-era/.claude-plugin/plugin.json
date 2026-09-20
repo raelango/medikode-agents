@@ -1,0 +1,14 @@
+{
+  "name": "medikode-era",
+  "displayName": "Medikode ERA",
+  "description": "Turn free-text EOB/remittance content into a structured, evidence-traced package and a real ANSI X12 835 file (E1-E7).",
+  "version": "1.0.0",
+  "author": {
+    "name": "Arasu Elango",
+    "url": "https://github.com/raelango"
+  },
+  "homepage": "https://github.com/raelango/medikode-agents",
+  "repository": "https://github.com/raelango/medikode-agents",
+  "license": "MIT",
+  "keywords": ["healthcare", "remittance", "eob", "x12-835", "edi"]
+}

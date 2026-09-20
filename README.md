@@ -15,6 +15,27 @@ datastore; that was removed — a run's request/response can include real
 patient chart text, which has no business being committed into a git
 repo.)
 
+## Installing as a Claude Code plugin
+
+This repo is also a Claude Code plugin marketplace — the fastest way to
+install these skills:
+
+```
+/plugin marketplace add raelango/medikode-agents
+/plugin install medikode-code@medikode-agents
+/plugin install medikode-audit@medikode-agents
+/plugin install medikode-era@medikode-agents
+/plugin install medikode-raf@medikode-agents
+/plugin install medikode-validate@medikode-agents
+```
+
+Each skill is its own plugin so you can install only the ones you need.
+See `.claude-plugin/marketplace.json` for the marketplace definition and
+each `skills/<name>/.claude-plugin/plugin.json` for the individual plugin
+manifests. Installing this way keeps itself up to date the normal plugin
+way; manually copying a skill folder into `~/.claude/skills/` (below)
+still works too, it just won't auto-update.
+
 ## Layout
 
 ```
@@ -25,11 +46,15 @@ raf/        R1          Compute a CMS-HCC Risk Adjustment Factor score
 validate/   V1          Check code-pair combinations for compliance
 skills/     medikode-code, medikode-audit, medikode-era, medikode-raf,
             medikode-validate — the canonical SKILL.md for each Claude Code
-            skill. Install/update a skill by copying its folder into
-            ~/.claude/skills/.
+            skill, each also wrapped as its own plugin (see above). Manual
+            install/update: copy the folder into ~/.claude/skills/.
 reference/  Specialties, insurances, facilities, vaccine components — the
             reference lists the coding pipeline reads today. See
             reference/README.md.
+validate/data/  Real NCCI PTP edit-pair data (Git LFS) backing
+            medikode-validate's PTP check. See validate/data/README.md.
+.claude-plugin/  Marketplace manifest (marketplace.json) for the plugin
+            install method above.
 ```
 
 Each pipeline's directory holds one JSON file per stage, named
@@ -119,3 +144,20 @@ copied in).
   repo's visibility. No run had actually completed under that design, so
   nothing needed to be purged from history. All five skills are read-only
   against this repo now.
+- 2026-09-19: SharePoint and other internal-system references scrubbed
+  from the working tree (this repo is public) — replaced with generic
+  phrasing throughout. Git history was left as-is (not rewritten).
+- 2026-09-19: `validate/data/` added — a real NCCI Procedure-to-Procedure
+  (PTP) edits dataset (Git LFS), trimmed from ~868MB of source data down
+  to ~48MB (1,732,834 practitioner + 1,406,713 hospital edit pairs).
+  `medikode-validate`'s PTP-bundling check is no longer just the model's
+  general knowledge — it now greps this data for every pair of billed
+  codes and feeds confirmed matches into the V1 prompt as ground truth
+  (`validate/V1-validate-codes.json` bumped to schema_version 1.2.0).
+  MUE/modifier/add-on checks remain general-knowledge-based.
+- 2026-09-20: `.claude-plugin/marketplace.json` added, plus a
+  `.claude-plugin/plugin.json` in each `skills/<name>/` directory, so this
+  repo doubles as a Claude Code plugin marketplace (`/plugin marketplace
+  add raelango/medikode-agents`). Each skill is registered as its own
+  plugin rather than one bundled plugin, so users can install only what
+  they need.

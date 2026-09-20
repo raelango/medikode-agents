@@ -1,0 +1,75 @@
+{
+  "name": "medikode-agents",
+  "owner": {
+    "name": "Arasu Elango",
+    "url": "https://github.com/raelango"
+  },
+  "description": "Medikode AI pipeline agents for Claude Code: medical coding, audit/reconciliation, remittance (ERA/835), CMS-HCC risk adjustment, and code-combination validation.",
+  "plugins": [
+    {
+      "name": "medikode-code",
+      "source": "./skills/medikode-code",
+      "description": "Run the Medikode multi-stage medical coding pipeline end to end, from a patient chart to a finalized claim.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arasu Elango",
+        "url": "https://github.com/raelango"
+      },
+      "license": "MIT",
+      "keywords": ["medical-coding", "healthcare", "cpt", "icd-10", "claims"],
+      "category": "healthcare"
+    },
+    {
+      "name": "medikode-audit",
+      "source": "./skills/medikode-audit",
+      "description": "Reconcile AI-generated codes against human-coded codes and chart evidence, flagging unsupported or mismatched codes.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arasu Elango",
+        "url": "https://github.com/raelango"
+      },
+      "license": "MIT",
+      "keywords": ["medical-coding", "healthcare", "audit", "claims", "compliance"],
+      "category": "healthcare"
+    },
+    {
+      "name": "medikode-era",
+      "source": "./skills/medikode-era",
+      "description": "Turn free-text EOB/remittance content into a structured, evidence-traced package and a real ANSI X12 835 file.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arasu Elango",
+        "url": "https://github.com/raelango"
+      },
+      "license": "MIT",
+      "keywords": ["healthcare", "remittance", "eob", "x12-835", "edi"],
+      "category": "healthcare"
+    },
+    {
+      "name": "medikode-raf",
+      "source": "./skills/medikode-raf",
+      "description": "Compute a CMS-HCC Risk Adjustment Factor (RAF) score from patient demographics and diagnoses.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arasu Elango",
+        "url": "https://github.com/raelango"
+      },
+      "license": "MIT",
+      "keywords": ["healthcare", "risk-adjustment", "cms-hcc", "raf", "medicare"],
+      "category": "healthcare"
+    },
+    {
+      "name": "medikode-validate",
+      "source": "./skills/medikode-validate",
+      "description": "Check CPT/HCPCS/ICD-10 code combinations for compliance issues, grounded in a real NCCI PTP edits dataset.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Arasu Elango",
+        "url": "https://github.com/raelango"
+      },
+      "license": "MIT",
+      "keywords": ["healthcare", "ncci", "ptp-edits", "compliance", "claims-editing"],
+      "category": "healthcare"
+    }
+  ]
+}

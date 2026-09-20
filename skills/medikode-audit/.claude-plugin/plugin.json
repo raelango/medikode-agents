@@ -1,0 +1,14 @@
+{
+  "name": "medikode-audit",
+  "displayName": "Medikode Audit",
+  "description": "Reconcile AI-generated codes against human-coded codes and chart evidence (S11-S15), flagging unsupported or mismatched codes before a claim goes out.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Arasu Elango",
+    "url": "https://github.com/raelango"
+  },
+  "homepage": "https://github.com/raelango/medikode-agents",
+  "repository": "https://github.com/raelango/medikode-agents",
+  "license": "MIT",
+  "keywords": ["medical-coding", "healthcare", "audit", "claims", "compliance"]
+}

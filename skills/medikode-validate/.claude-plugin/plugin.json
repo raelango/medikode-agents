@@ -1,0 +1,14 @@
+{
+  "name": "medikode-validate",
+  "displayName": "Medikode Validate",
+  "description": "Check CPT/HCPCS/ICD-10 code combinations for compliance issues, grounded in a real ~3.1M-row NCCI PTP edits dataset.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Arasu Elango",
+    "url": "https://github.com/raelango"
+  },
+  "homepage": "https://github.com/raelango/medikode-agents",
+  "repository": "https://github.com/raelango/medikode-agents",
+  "license": "MIT",
+  "keywords": ["healthcare", "ncci", "ptp-edits", "compliance", "claims-editing"]
+}
